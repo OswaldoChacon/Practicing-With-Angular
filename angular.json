@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AngularTest"
+    }
+  },
+  "defaultProject": "AngularTest",
+  "cli": {
+    "analytics": "39506028-020d-46c0-908b-9840604af1b6"
+  }
 }

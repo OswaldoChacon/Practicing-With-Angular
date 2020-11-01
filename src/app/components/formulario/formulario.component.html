@@ -1,0 +1,140 @@
+<form
+    [formGroup]="formRegistro"
+    (ngSubmit)="registrarme()"
+>
+    <div class="form-row">
+        <div class="form-group col">
+            <!-- <label for="nombre">Nombre(s)</label> -->
+            <input
+                type="text"
+                formControlName="nombre"
+                class="form-control"
+                [class.is-invalid]="nombre.invalid && (nombre.dirty || nombre.touched)"
+                placeholder="Nombre(s)"
+                required
+            >
+            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <div
+                    *ngIf="nombre.errors.required"
+                    class="text-danger"
+                >
+                    El campo nombre es obligatorio
+                </div>
+                <div
+                    *ngIf="nombre.errors.noIguales"
+                    class="text-danger"
+                >
+                    El campo nombre debe ser diferente a Jesus
+                </div>
+                <div
+                    *ngIf="nombre.errors.exists"
+                    class="text-danger"
+                >
+                    El usuario ya esta en uso
+                </div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <!-- <label for="apellidos">Apellidos</label> -->
+            <input
+                type="text"
+                formControlName="apellidos"
+                class="form-control"
+                [class.is-invalid]="apellidos.invalid && (apellidos.dirty || apellidos.touched)"
+                placeholder="Apellidos"
+                aria-describedby="apellidosValidation"
+                required
+            >
+            <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                <div
+                    *ngIf="apellidos.errors.required"
+                    class="text-danger"
+                >
+                    El campo apellidos es obligatorio
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <!-- <label for=""></label> -->
+            <input
+                type="password"
+                formControlName="password"
+                class="form-control"
+                placeholder="Contraseña"
+            >
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div
+                    *ngIf="password.errors.required"
+                    class="text-danger"
+                >
+                    El campo contraseña es obligatorio
+                </div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <!-- <label for=""></label> -->
+            <input
+                type="text"
+                formControlName="confirmarPassword"
+                class="form-control"
+                placeholder="Confirmar contraseña"
+            >
+            <div *ngIf="confirmarPassword.invalid && (confirmarPassword.dirty || confirmarPassword.touched)">
+                <div
+                    *ngIf="confirmarPassword.errors.required"
+                    class="text-danger"
+                >
+                    El campo contraseña es obligatorio
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-row-reverse">
+        <button
+            class="btn btn-primary"
+            (click)="agregarFormControl()"
+        >
+            Agregar FormControl
+        </button>
+    </div>
+    <div
+        class="mt-3"
+        formArrayName="array"
+        *ngFor="let itemControl of arrayControl.controls; let i=index"
+    >
+
+        <div class="row">
+            <div class="form-group col-9">
+                <input
+                    type="text"
+                    [formControlName]="i"
+                    class="form-control"
+                    placeholder="Nombre array"
+                >
+            </div>
+            <div class="col-3 d-flex justify-content-center align-items-center mb-3">
+                <button
+                    class="btn btn-danger"
+                    (click)="eliminarFormControl(i)"
+                >
+                    Elminar
+                </button>
+            </div>
+        </div>
+    </div>
+    <button
+        type="submit"
+        class="btn btn-primary btn-block mt-3"
+        [disabled]="formRegistro.invalid || formRegistro.pending"
+    >
+        Registrarme
+    </button>
+</form>
+<pre>
+    Estado: {{formRegistro.valid}}        
+    <br>
+    Status: {{formRegistro.status}}
+</pre>
+<pre>{{formRegistro.value | json}}</pre>
