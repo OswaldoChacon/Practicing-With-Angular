@@ -19,6 +19,7 @@ export class FormularioComponent implements OnInit {
     validators: this.validadorService.confirmarPassword
   }
   )
+
   constructor(private formBuilder: FormBuilder,
     private validadorService: ValidadoresService
   ) { }
@@ -42,7 +43,7 @@ export class FormularioComponent implements OnInit {
     this.arrayControl.removeAt(indice);
   }
 
-  crearFormControl() {
+  crearFormControl() {    
     return this.formBuilder.control('', [Validators.required])
   }
 

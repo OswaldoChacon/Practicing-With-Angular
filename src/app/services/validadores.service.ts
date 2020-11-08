@@ -21,7 +21,7 @@ export class ValidadoresService {
         return of(null);
       }
       return control.valueChanges.pipe(
-        debounceTime(2500),
+        debounceTime(2500),        
         take(1),
         switchMap(_ => this.authService.checkEmail(control.value)),
       );
